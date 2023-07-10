@@ -40,7 +40,7 @@
         position: relative;
       }
       .screenshot-button::after {
-        content: '';
+        content: "";
         display: block;
         height: 45px;
         width: 45px;
@@ -75,7 +75,7 @@
 
       .frame-top-left {
         display: block;
-        content: '';
+        content: "";
         width: 10%;
         height: 15%;
         position: absolute;
@@ -87,7 +87,7 @@
 
       .frame-top-right {
         display: block;
-        content: '';
+        content: "";
         width: 10%;
         height: 15%;
         position: absolute;
@@ -99,7 +99,7 @@
 
       .frame-bottom-left {
         display: block;
-        content: '';
+        content: "";
         width: 10%;
         height: 15%;
         position: absolute;
@@ -110,7 +110,7 @@
       }
       .frame-bottom-right {
         display: block;
-        content: '';
+        content: "";
         width: 10%;
         height: 15%;
         position: absolute;
@@ -151,19 +151,11 @@
     </div>
   </body>
   <script async>
+    let video = document.getElementById("cam");
     var mediaStream = null;
-    let video = document.getElementById('cam');
-    // Prefer camera resolution nearest to 1280x720.
-    var constraints = {
-      audio: false,
-      video: {
-        width: { ideal: video.offsetWidth },
-        height: { ideal: video.offsetHeight },
-        facingMode: 'environment',
-      },
-    };
+    let isMainCameria = true;
+
     async function getMediaStream(constraints) {
-      console.log(navigator.mediaDevices)
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
@@ -187,7 +179,7 @@
         }
 
         // set the video source to null
-        document.getElementById('cam').srcObject = null;
+        document.getElementById("cam").srcObject = null;
 
         // change "facingMode"
         constraints.video.facingMode = cameraMode;
@@ -201,10 +193,10 @@
     }
 
     function takePicture() {
-      let canvas = document.getElementById('canvas');
-      let video = document.getElementById('cam');
-      let photo = document.getElementById('photo');
-      let context = canvas.getContext('2d');
+      let canvas = document.getElementById("canvas");
+      let video = document.getElementById("cam");
+      let photo = document.getElementById("photo");
+      let context = canvas.getContext("2d");
 
       const height = video.videoHeight;
       const width = video.videoWidth;
@@ -213,33 +205,30 @@
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
+        var data = canvas.toDataURL("image/png");
+        photo.setAttribute("src", data);
       } else {
         clearphoto();
       }
     }
 
     function clearPhoto() {
-      let canvas = document.getElementById('canvas');
-      let photo = document.getElementById('photo');
-      let context = canvas.getContext('2d');
+      let canvas = document.getElementById("canvas");
+      let photo = document.getElementById("photo");
+      let context = canvas.getContext("2d");
 
-      context.fillStyle = '#AAA';
+      context.fillStyle = "#AAA";
       context.fillRect(0, 0, canvas.width, canvas.height);
-      var data = canvas.toDataURL('image/png');
-      photo.setAttribute('src', data);
+      var data = canvas.toDataURL("image/png");
+      photo.setAttribute("src", data);
     }
 
-    document.getElementById('switchBtn').onclick = (event) => {
-      switchCamera('user');
+    document.getElementById("switchBtn").onclick = (event) => {
+      isMainCameria = !isMainCameria;
+      switchCamera(isMainCameria ? "environment" : "user");
     };
 
-    document.getElementById('switchBtn').onclick = (event) => {
-      switchCamera('environment');
-    };
-
-    document.getElementById('snapBtn').onclick = (event) => {
+    document.getElementById("snapBtn").onclick = (event) => {
       takePicture();
       event.preventDefault();
     };
@@ -247,6 +236,14 @@
     clearPhoto();
 
     setTimeout(async () => {
+      var constraints = {
+        audio: false,
+        video: {
+          width: { ideal: video.offsetWidth },
+          height: { ideal: video.offsetHeight },
+          facingMode: "environment",
+        },
+      };
       await getMediaStream(constraints);
     }, 1000);
   </script>
