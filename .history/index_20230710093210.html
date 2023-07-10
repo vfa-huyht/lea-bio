@@ -152,14 +152,6 @@
   </body>
   <script async>
     let video = document.getElementById("cam");
-    var constraints = {
-      audio: false,
-      video: {
-        width: { ideal: video.offsetWidth },
-        height: { ideal: video.offsetHeight },
-        facingMode: "environment",
-      },
-    };
     var mediaStream = null;
     let isMainCameria = true;
 
