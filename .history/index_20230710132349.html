@@ -165,13 +165,13 @@
 
     async function getMediaStream() {
       var constraints = {
-        audio: false,
-        video: {
-          width: { ideal: video.offsetWidth },
-          height: { ideal: video.offsetHeight },
-          facingMode: "environment",
-        },
-      };
+      audio: false,
+      video: {
+        width: { ideal: video.offsetWidth },
+        height: { ideal: video.offsetHeight },
+        facingMode: "environment",
+      },
+    };
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
@@ -197,13 +197,13 @@
         // set the video source to null
         document.getElementById("cam").srcObject = null;
         var constraints = {
-          audio: false,
-          video: {
-            width: { ideal: video.offsetWidth },
-            height: { ideal: video.offsetHeight },
-            facingMode: "environment",
-          },
-        };
+      audio: false,
+      video: {
+        width: { ideal: video.offsetWidth },
+        height: { ideal: video.offsetHeight },
+        facingMode: "environment",
+      },
+    };
 
         // change "facingMode"
         constraints.video.facingMode = cameraMode;
