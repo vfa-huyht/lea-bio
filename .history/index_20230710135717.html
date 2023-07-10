@@ -125,10 +125,9 @@
       }
       #photo {
         z-index: 2;
-        position: absolute;
-        left: 22px;
-        top: 22px;
-        display: none
+    position: absolute;
+    left: 0;
+    top: 0;
       }
     </style>
   </head>
@@ -143,7 +142,11 @@
         </div>
         <video id="cam" autoplay muted playsinline>Not available</video>
         <canvas id="canvas" style="display: none"></canvas>
-        <img id="photo" alt="The screen capture will appear in this box." />
+        <img
+          id="photo"
+          alt="The screen capture will appear in this box."
+          style="display: none"
+        />
       </div>
       <div class="action-section">
         <a class="screenshot-button" id="snapBtn"></a>
@@ -160,7 +163,7 @@
       video: {
         width: { ideal: video.offsetWidth },
         height: { ideal: video.offsetHeight },
-        aspectRatio: 5 / 4,
+        aspectRatio: 5/4,
         facingMode: "environment",
       },
     };
@@ -213,11 +216,10 @@
 
       const height = video.videoHeight;
       const width = video.videoWidth;
-      const spacing = 44
 
       if (width && height) {
-        canvas.width = width - spacing;
-        canvas.height = height - spacing;
+        canvas.width = width;
+        canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);

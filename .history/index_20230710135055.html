@@ -76,8 +76,8 @@
       .frame-top-left {
         display: block;
         content: "";
-        width: 30px;
-        height: 70px;
+        width: 10%;
+        height: 15%;
         position: absolute;
         top: 15px;
         left: 15px;
@@ -88,8 +88,8 @@
       .frame-top-right {
         display: block;
         content: "";
-        width: 30px;
-        height: 70px;
+        width: 10%;
+        height: 15%;
         position: absolute;
         top: 15px;
         right: 15px;
@@ -100,8 +100,8 @@
       .frame-bottom-left {
         display: block;
         content: "";
-        width: 30px;
-        height: 70px;
+        width: 10%;
+        height: 15%;
         position: absolute;
         bottom: 15px;
         left: 15px;
@@ -111,8 +111,8 @@
       .frame-bottom-right {
         display: block;
         content: "";
-        width: 30px;
-        height: 70px;
+        width: 10%;
+        height: 15%;
         position: absolute;
         bottom: 15px;
         right: 15px;
@@ -122,13 +122,6 @@
       #cam {
         width: 100%;
         height: 100%;
-      }
-      #photo {
-        z-index: 2;
-        position: absolute;
-        left: 22px;
-        top: 22px;
-        display: none
       }
     </style>
   </head>
@@ -143,7 +136,11 @@
         </div>
         <video id="cam" autoplay muted playsinline>Not available</video>
         <canvas id="canvas" style="display: none"></canvas>
-        <img id="photo" alt="The screen capture will appear in this box." />
+        <img
+          id="photo"
+          alt="The screen capture will appear in this box."
+          style="display: none"
+        />
       </div>
       <div class="action-section">
         <a class="screenshot-button" id="snapBtn"></a>
@@ -160,7 +157,7 @@
       video: {
         width: { ideal: video.offsetWidth },
         height: { ideal: video.offsetHeight },
-        aspectRatio: 5 / 4,
+        aspectRatio: 5/4,
         facingMode: "environment",
       },
     };
@@ -213,11 +210,10 @@
 
       const height = video.videoHeight;
       const width = video.videoWidth;
-      const spacing = 44
 
       if (width && height) {
-        canvas.width = width - spacing;
-        canvas.height = height - spacing;
+        canvas.width = width;
+        canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
