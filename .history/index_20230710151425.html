@@ -130,12 +130,8 @@
         top: 22px;
         display: none;
       }
-      #retake-container {
-        display: flex;
-        justify-content: center;
-      }
       #retake {
-        display: none;
+        text-align: center;
       }
     </style>
   </head>
@@ -152,21 +148,19 @@
         <canvas id="canvas" style="display: none"></canvas>
         <img id="photo" alt="The screen capture will appear in this box." />
       </div>
-      <div class="action-section" id="take-photo">
+      <div class="action-section">
         <a class="screenshot-button" id="snapBtn"></a>
         <a class="switch-button" id="switchBtn"
           ><i class="fa fa-refresh" aria-hidden="true"></i>
         </a>
       </div>
-      <div id="retake-container">
+      <div style="text-align: center;">
         <button id="retake">Retake</button>
       </div>
     </div>
   </body>
   <script async>
     let video = document.getElementById("cam");
-    let retakeBtn = document.getElementById("retake");
-    let takePhotoBtn = document.getElementById("take-photo");
     var constraints = {
       audio: false,
       video: {
@@ -234,21 +228,11 @@
         var data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
         photo.style.display = "inline-block";
-        // mediaStream.getVideoTracks()[0].stop();
+        mediaStream.getVideoTracks()[0].stop();
         video.style.display = "none";
-        retakeBtn.style.display = "block";
-        takePhotoBtn.style.display = "none";
-        photo.style.opacity = 1;
       } else {
         clearphoto();
       }
-    }
-
-    async function retake() {
-      video.style.display = "block";
-      retakeBtn.style.display = "none";
-      takePhotoBtn.style.display = "block";
-      photo.style.opacity = 0.5;
     }
 
     function clearPhoto() {
@@ -269,11 +253,6 @@
 
     document.getElementById("snapBtn").onclick = (event) => {
       takePicture();
-      event.preventDefault();
-    };
-
-    document.getElementById("retake").onclick = async (event) => {
-      retake();
       event.preventDefault();
     };
 

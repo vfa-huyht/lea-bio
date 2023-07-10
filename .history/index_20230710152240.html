@@ -234,21 +234,21 @@
         var data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
         photo.style.display = "inline-block";
-        // mediaStream.getVideoTracks()[0].stop();
+        mediaStream.getVideoTracks()[0].stop();
         video.style.display = "none";
         retakeBtn.style.display = "block";
         takePhotoBtn.style.display = "none";
-        photo.style.opacity = 1;
       } else {
         clearphoto();
       }
     }
 
     async function retake() {
+      await getMediaStream(constraints);
+      await getMediaStream(constraints);
       video.style.display = "block";
-      retakeBtn.style.display = "none";
-      takePhotoBtn.style.display = "block";
-      photo.style.opacity = 0.5;
+        retakeBtn.style.display = "none";
+        takePhotoBtn.style.display = "block";
     }
 
     function clearPhoto() {
