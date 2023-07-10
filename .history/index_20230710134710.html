@@ -155,6 +155,8 @@
     var constraints = {
       audio: false,
       video: {
+        width: { ideal: video.offsetWidth },
+        height: { ideal: video.offsetHeight },
         aspectRatio: 5/4,
         facingMode: "environment",
       },
