@@ -128,7 +128,7 @@
         position: absolute;
         left: 22px;
         top: 22px;
-        display: none;
+        display: none
       }
     </style>
   </head>
@@ -173,7 +173,8 @@
         mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
 
         video.srcObject = mediaStream;
-        video.onloadedmetadata = (event) => {
+        video.onloadedmetadata = (stream) => {
+          window.localStream = stream;
           video.play();
         };
       } catch (err) {
@@ -213,17 +214,16 @@
 
       const height = video.videoHeight;
       const width = video.videoWidth;
-      const spacing = 44;
+      const spacing = 44
 
       if (width && height) {
         canvas.width = width - spacing;
         canvas.height = height - spacing;
-        context.drawImage(video, -spacing / 2, -spacing / 2, width, height);
+        context.drawImage(video, 0, 0, width, height);
         var data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
-        photo.style.display = "inline-block";
-        mediaStream.getVideoTracks()[0].stop();
-        video.style.display = "none";
+        photo.style.display = 'inline-block'
+        localStream.getVideoTracks()[0].stop()
       } else {
         clearphoto();
       }
