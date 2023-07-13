@@ -262,10 +262,10 @@
     }
 
     function switchBackground() {
-      if (photo.style.opacity && photo.style.opacity === "0") {
+      if (photo.style.opacity && photo.style.opacity === 1) {
         photo.style.opacity = 0.5;
       } else {
-        photo.style.opacity = 0;
+        photo.style.opacity = 1;
       }
     }
 
@@ -295,15 +295,15 @@
       event.preventDefault();
     };
 
-    document.getElementById("offBgBtn").onclick = async (event) => {
-      switchBackground();
+    document.getElementById("retake").onclick = async (event) => {
+      retake();
       event.preventDefault();
     };
 
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>

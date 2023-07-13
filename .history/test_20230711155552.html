@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,target-densityDpi=device-dpi"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Numerology Monthly Forecast</title>
+    <style>
+      body {
+        font-family: Roboto, sans-serif;
+        margin: 0;
+      }
+      .title {
+        padding: 15px 0;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .title__image {
+        width: 110px;
+      }
+      .title__image--spacing {
+        margin: 0 20px;
+      }
+      .title__text {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 12px;
+        color: #717171;
+      }
+      .content {
+        padding: 0 20px;
+        margin-top: -28px;
+      }
+      .content__title {
+        font-family: "Noto Serif JP", serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 28px;
+        color: #8563ea;
+      }
+      .content__body {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 32px;
+        color: #606060;
+      }
+      #life-path-number {
+        width: auto;
+        height: 110px;
+      }
+      .container {
+        position: relative;
+        background-size: contain;
+        background-position: center -100px;
+        background-repeat: no-repeat;
+        background-image: url(https://d1jlibta9cckby.cloudfront.net/life_numbers/Background.svg?Expires=1689152134&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMWpsaWJ0YTljY2tieS5jbG91ZGZyb250Lm5ldC9saWZlX251bWJlcnMvQmFja2dyb3VuZC5zdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2ODkxNTIxMzR9fX1dfQ__&Signature=0ijEoUkNXV80-YuxNY92XYUkmUaNiFqW1eC3X4f7fMasPvI1DF3JvoFeNDzUUSJoLN12Cu-aU3J1whicX9VX7oXbLKjEelaD6VvMT7ngDI2jcPRZ9oPZcm4bzGsRGjs~GgektlOVUbwKxbn4uPVh~G6vdG~WcPQawCJR9Dssr8cI~3KxclVGBDC-4WWMglC2LbDjWwcpoNXHNUCuneV-lAkwP1N2OwSAmmn7FypxvbvqYbFKBNMwN2FdB4E83oFZ98GWcFA5LFJ9uveKXC2KW9g8rvQUFfkH~rRv3UOaelkto6Vi4YqoLWoqupb7EAB9eHAgQuSkqvKWQk3XL3Fmbg__&Key-Pair-Id=K3W248LOVU1CXV);
+      }
+      .focast__list {
+        padding: 0;
+        list-style-type: none;
+      }
+      .focast__list__item {
+        border-top: 1px solid #e0e0e0;
+      }
+      .focast__list__item__title {
+        font-family: "Noto Serif JP";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 28px;
+        color: #8563ea;
+      }
+      .focast__list__item__content {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 32px;
+        color: #606060;
+      }
+      .focast__list__item__date {
+        padding: 5px 0;
+        text-align: center;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 28px;
+        color: #8563ea;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(165, 103, 227, 0.1),
+          transparent
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <div class="title__image title__image--spacing">
+          <img
+            id="life-path-number"
+            src="https://d1jlibta9cckby.cloudfront.net/life_numbers/number_11.png?Expires=1689152134&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMWpsaWJ0YTljY2tieS5jbG91ZGZyb250Lm5ldC9saWZlX251bWJlcnMvbnVtYmVyXzExLnBuZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY4OTE1MjEzNH19fV19&Signature=tVklyw5XNXc3BH1eFHaVi9xF5C~KYQJv9oU3nnSLJLewuenHFTc6B5-~5aeJ9xwwneCx0Qig6dEB5irjwvnkXGHWZkGCIs-gOPBQevqu4GpvT1YoC-WHBd2rphMiuwguGyV-9oIp-u~YRFMGYVJVyHOWzEZ9~KxRxYcPdGJYR9QoIct1j~Hda5ZM7hXSHujnlC78dgBVkYpSGwC86~c9OtFIlD3D6VyFkjTyAPn4hzFOJ2Oa6YUX5CffMkaUXB~OoWwBD5rI-c9oClj6D4HqE9tbiLAMwXF~agE8Wljq~fV9DG3ewHaaYyzEqmkqsgaxeeLW4ZNzdF4YPgJkcsXUwA__&Key-Pair-Id=K3W248LOVU1CXV"
+            alt="Life path number"
+          />
+        </div>
+        <div class="title__text">
+          <p>人生数「11」</p>
+          <p>あなたのコンパス</p>
+        </div>
+      </div>
+      <div class="content">
+        <ul class="focast__list">
+          <li>
+            <div class="focast__list__item__container">
+              <p class="focast__list__item__date">2023年07月は</p>
+              <p class="focast__list__item__title">
+                2023年７月は輪廻転生と直流の月です。
+              </p>
+              <p class="focast__list__item__content">
+                古いものを一度見直し、新しい流れに生まれ変わる月。自分で方向を定め、あらゆる方面で交流が行われる時。<br />今までの自分の価値観や思い込みの枠を超え、新たな世界へ一歩を踏み出すことが出来るかどうかが最大のポイント！<br />7月からは、今までの生活を守り続ける人、転換する人、更なる二極化が加速します。<br />7月は、未来に繋がる大切な月になります。これまでの自分の拘りや習慣は7月上旬一度リセットしましょう。可能性を広げていく、新たな人間関係が、あなたの可能性を広げていくことになるでしょう。<br />柔軟な気持ちと、あなたの輝けるものをイメージしながら冒険の旅に出かけましょう。<br /><br />人生数11のあなたは、直感や感覚を大事にし、感受性豊か。その独創性を認められる環境が、さらに芸術的センスに磨きがかかります。<br />今月のテーマは、『自分の世界を表現する手段がある』です。<br />今月意識するポイントは、感じたものを好きな方法で表現してみよう。ユニークなアイディアがあなたの魅力。制限は設けないこと。<br />あなたにとっての当たり前、今！を生きているため、その時感じたままに感情に出たり、体が動くため、気持ちが常に変わる。人や環境に左右される前に自分から行動してみよう。７月は、心を許せる人の前であなたの得意なジャンルのものを表現してみましょう。殻に閉じこもることを手放しましょう。<br />少人数のグループが、人生数11のあなたを次への人生のス���ップへ導きます。<br /><br />☆ラッキーカラー藍色<br />♡ラッキーアクション
+                マルシェ<br />♬ラーキーフード 神社の手水<br />
+              </p>
+            </div>
+          </li>
+          <li id="emotional-value"></li>
+          <li class="focast__list__item">
+            <div class="focast__list__item__container">
+              <p class="focast__list__item__date">07月01日〜07月11日</p>
+              <p class="focast__list__item__title">
+                新たな次元へ！得意分野が癒しの空間決断の時
+              </p>
+              <p class="focast__list__item__content">
+                7月上旬は、運気の流れが最も強く、宇宙の流れが新たな挑戦を後押ししてくれます。<br />神様は、あなたに、これからの人生どちらに向かいますか？と尋ねています。<br />7月上旬は、未来の行き先を明確に決める最終変革期です。これからの人生の中でも大きな分岐点となるでしょう。あなたの心の奥底に本音で向き合いましょう。<br />この時期を逃すと、世の中の変化の波のスピードが加速し、乗り遅れてしまう可能性大。<br />まっさらな状態で本心と繋がることです。さあ、行動に移しましょう。<br />7月上旬は、あなたの決めた自由意志で【目的を定める時】未来を想像してみましょう。<br />7月末には、あなたの決めたところへ【宇宙旅行】へ加速して飛び立ちます。<br />☆人生数11のあなたは、現実より鋭い感性が直感に導かれるままに、生きていくスタイルが、魅力の人です。<br />★この時期に心がけること★　人生スタイルを確立させ、多くの人々に癒しを与える。<br /><br />人生数11のあなたは、直感を信じ、誰にも相談せずに決断し行動できる人。7月上旬は、これまでの生活を見直し、芸術やアートなど、光り輝く方へ時間を使いましょう。<br />二極化の運気、パートナー運、仕事運、人気運、今後の仕事となる出会い運が最高の運気となるか、家族や反対する人の意見を採用すると自らの意見では無いため、胃腸や腹痛に痛みを伴うことも。高次元では、あなたの世界観を確立させ、人間的にも大きく成長する時です。<br /><br />♡2023年7月上旬おすすめの過ごし方！<br />1.
+                直感を信じる。<br />2. 音楽に触れる。<br />3. お香を焚く。<br />
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

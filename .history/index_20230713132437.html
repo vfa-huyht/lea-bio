@@ -61,14 +61,6 @@
         transform: translate(calc(-50% + 100px), -50%);
       }
 
-      .turn-off-background {
-        font-size: 24px;
-        position: absolute;
-        right: 50%;
-        top: 50%;
-        transform: translate(calc(50% - 80px), -50%);
-      }
-
       .photo-section {
         position: relative;
       }
@@ -161,9 +153,6 @@
         <img id="photo" alt="The screen capture will appear in this box." />
       </div>
       <div class="action-section" id="take-photo">
-        <a class="turn-off-background" id="offBgBtn"
-          ><i class="fa fa-file-image-o" aria-hidden="true"></i>
-        </a>
         <a class="screenshot-button" id="snapBtn"></a>
         <a class="switch-button" id="switchBtn"
           ><i class="fa fa-refresh" aria-hidden="true"></i>
@@ -187,6 +176,7 @@
         facingMode: "environment",
       },
     };
+    console.log(constraints);
     var mediaStream = null;
     let isMainCameria = true;
 
@@ -261,14 +251,6 @@
       photo.style.opacity = 0.5;
     }
 
-    function switchBackground() {
-      if (photo.style.opacity && photo.style.opacity === "0") {
-        photo.style.opacity = 0.5;
-      } else {
-        photo.style.opacity = 0;
-      }
-    }
-
     function clearPhoto() {
       let canvas = document.getElementById("canvas");
       let photo = document.getElementById("photo");
@@ -295,15 +277,10 @@
       event.preventDefault();
     };
 
-    document.getElementById("offBgBtn").onclick = async (event) => {
-      switchBackground();
-      event.preventDefault();
-    };
-
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>

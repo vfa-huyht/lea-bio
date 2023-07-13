@@ -61,12 +61,12 @@
         transform: translate(calc(-50% + 100px), -50%);
       }
 
-      .turn-off-background {
+      .turn-off-background{
         font-size: 24px;
         position: absolute;
         right: 50%;
         top: 50%;
-        transform: translate(calc(50% - 80px), -50%);
+        transform: translate(calc(-50% - 100px), -50%);
       }
 
       .photo-section {
@@ -162,7 +162,7 @@
       </div>
       <div class="action-section" id="take-photo">
         <a class="turn-off-background" id="offBgBtn"
-          ><i class="fa fa-file-image-o" aria-hidden="true"></i>
+          ><i class="fa fa-refresh" aria-hidden="true"></i>
         </a>
         <a class="screenshot-button" id="snapBtn"></a>
         <a class="switch-button" id="switchBtn"
@@ -261,14 +261,6 @@
       photo.style.opacity = 0.5;
     }
 
-    function switchBackground() {
-      if (photo.style.opacity && photo.style.opacity === "0") {
-        photo.style.opacity = 0.5;
-      } else {
-        photo.style.opacity = 0;
-      }
-    }
-
     function clearPhoto() {
       let canvas = document.getElementById("canvas");
       let photo = document.getElementById("photo");
@@ -292,11 +284,6 @@
 
     document.getElementById("retake").onclick = async (event) => {
       retake();
-      event.preventDefault();
-    };
-
-    document.getElementById("offBgBtn").onclick = async (event) => {
-      switchBackground();
       event.preventDefault();
     };
 

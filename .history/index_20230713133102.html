@@ -61,7 +61,7 @@
         transform: translate(calc(-50% + 100px), -50%);
       }
 
-      .turn-off-background {
+      .turn-off-background{
         font-size: 24px;
         position: absolute;
         right: 50%;
@@ -163,6 +163,7 @@
       <div class="action-section" id="take-photo">
         <a class="turn-off-background" id="offBgBtn"
           ><i class="fa fa-file-image-o" aria-hidden="true"></i>
+
         </a>
         <a class="screenshot-button" id="snapBtn"></a>
         <a class="switch-button" id="switchBtn"
@@ -262,10 +263,11 @@
     }
 
     function switchBackground() {
-      if (photo.style.opacity && photo.style.opacity === "0") {
+      if(photo.style.opacity && photo.style.opacity === 1) {
         photo.style.opacity = 0.5;
-      } else {
-        photo.style.opacity = 0;
+      }
+      else {
+        photo.style.opacity = 1;
       }
     }
 
@@ -295,15 +297,15 @@
       event.preventDefault();
     };
 
-    document.getElementById("offBgBtn").onclick = async (event) => {
-      switchBackground();
+    document.getElementById("retake").onclick = async (event) => {
+      retake();
       event.preventDefault();
     };
 
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>
