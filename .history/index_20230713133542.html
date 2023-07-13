@@ -67,7 +67,6 @@
         right: 50%;
         top: 50%;
         transform: translate(calc(50% - 80px), -50%);
-        display: none;
       }
 
       .photo-section {
@@ -179,7 +178,6 @@
     let video = document.getElementById("cam");
     let retakeBtn = document.getElementById("retake");
     let takePhotoBtn = document.getElementById("take-photo");
-    let offBgBtn = document.getElementById("offBgBtn");
     var constraints = {
       audio: false,
       video: {
@@ -261,14 +259,13 @@
       retakeBtn.style.display = "none";
       takePhotoBtn.style.display = "block";
       photo.style.opacity = 0.5;
-      offBgBtn.style.display = "inline-block";
     }
 
     function switchBackground() {
-      if (photo.style.display && photo.style.display === "inline-block") {
-        photo.style.display = "none";
+      if (photo.style.opacity && photo.style.opacity === "0") {
+        photo.style.opacity = 0.5;
       } else {
-        photo.style.display = "inline-block";
+        photo.style.opacity = 0;
       }
     }
 
@@ -305,8 +302,8 @@
 
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>
