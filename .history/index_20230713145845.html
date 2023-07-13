@@ -214,7 +214,7 @@
       video: {
         width: { ideal: video.offsetWidth },
         height: { ideal: video.offsetHeight },
-        aspectRatio: getMobileOperatingSystem() === "iOS" ? 5 / 4 : 4 / 5,
+        aspectRatio: 4 / 5,
         facingMode: "environment",
       },
     };
@@ -339,25 +339,18 @@
       }
     }
 
-    function getMobileOperatingSystem() {
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      console.log(userAgent);
-
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-      }
-
-      if (/android/i.test(userAgent)) {
-        return "Android";
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    function getOS() {
+      var uA = navigator.userAgent || navigator.vendor || window.opera;
+      if (
+        (/iPad|iPhone|iPod/.test(uA) && !window.MSStream) ||
+        (uA.includes("Mac") && "ontouchend" in document)
+      )
         return "iOS";
-      }
 
-      return "unknown";
+      var i,
+        os = ["Windows", "Android", "Unix", "Mac", "Linux", "BlackBerry"];
+      for (i = 0; i < os.length; i++)
+        if (new RegExp(os[i], "i").test(uA)) return os[i];
     }
 
     document.getElementById("switchBtn").onclick = (event) => {
@@ -386,6 +379,7 @@
     };
 
     clearPhoto();
+    alert(getOS());
 
     setTimeout(async () => {
       await getMediaStream(constraints);

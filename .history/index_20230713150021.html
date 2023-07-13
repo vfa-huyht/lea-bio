@@ -214,7 +214,7 @@
       video: {
         width: { ideal: video.offsetWidth },
         height: { ideal: video.offsetHeight },
-        aspectRatio: getMobileOperatingSystem() === "iOS" ? 5 / 4 : 4 / 5,
+        aspectRatio: 4 / 5,
         facingMode: "environment",
       },
     };
@@ -340,8 +340,9 @@
     }
 
     function getMobileOperatingSystem() {
+      
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      console.log(userAgent);
+      console.log(userAgent)
 
       // Windows Phone must come first because its UA also contains "Android"
       if (/windows phone/i.test(userAgent)) {
@@ -386,9 +387,11 @@
     };
 
     clearPhoto();
+    getMobileOperatingSystem()
+    // alert(getMobileOperatingSystem());
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>
