@@ -135,12 +135,10 @@
       #photo {
         z-index: 2;
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        left: 22px;
+        top: 22px;
         display: none;
-        max-width: calc(100% - 44px);
-        max-height: calc(100% - 44px);
+        max-width: 100%;
       }
       #retake-container {
         display: flex;
@@ -151,17 +149,17 @@
       }
       #unsupport-section {
         display: flex;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        font-size: 14px;
-        display: none;
       }
       #unsupport-section div {
         text-align: center;
-      }
-      #unsupport-section label {
-        color: #0000ee;
       }
       #local {
         display: none;
@@ -178,6 +176,13 @@
           <div class="frame-bottom-right"></div>
         </div>
         <video id="cam" autoplay muted playsinline>Not available</video>
+        <div id="unsupport-section">
+          <div>
+            <p>Browser do not support</p>
+            <input type="file" id="local" name="local" />
+            <label for="local">Import from gallery</label>
+          </div>
+        </div>
         <canvas id="canvas" style="display: none"></canvas>
         <img id="photo" alt="The screen capture will appear in this box." />
       </div>
@@ -190,13 +195,6 @@
           ><i class="fa fa-refresh" aria-hidden="true"></i>
         </a>
       </div>
-      <div id="unsupport-section">
-        <div>
-          <p>Browser do not support</p>
-          <input type="file" id="local" name="local" />
-          <label for="local">Import from gallery</label>
-        </div>
-      </div>
       <div id="retake-container">
         <button id="retake">Retake</button>
       </div>
@@ -208,7 +206,6 @@
     let takePhotoBtn = document.getElementById("take-photo");
     let offBgBtn = document.getElementById("offBgBtn");
     let localImage = document.getElementById("local");
-    let unsupportSection = document.getElementById("unsupport-section");
     var constraints = {
       audio: false,
       video: {
@@ -224,17 +221,11 @@
     async function getMediaStream(constraints) {
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
-        if (mediaStream) {
-          unsupportSection.style.display = "none";
-          takePhotoBtn.style.display = "block";
-          video.srcObject = mediaStream;
-          video.onloadedmetadata = (event) => {
-            video.play();
-          };
-        } else {
-          unsupportSection.style.display = "flex";
-          takePhotoBtn.style.display = "none";
-        }
+
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = (event) => {
+          video.play();
+        };
       } catch (err) {
         console.error(err.message);
       }
@@ -359,15 +350,15 @@
       event.preventDefault();
     };
 
-    localImage.onchange = (event) => {
+    localImage.onchange =  (event) => {
       importLocalImage(event);
       event.preventDefault();
     };
 
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>

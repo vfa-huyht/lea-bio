@@ -155,13 +155,12 @@
         align-items: center;
         flex-wrap: wrap;
         font-size: 14px;
-        display: none;
       }
       #unsupport-section div {
         text-align: center;
       }
       #unsupport-section label {
-        color: #0000ee;
+        color: #0000EE;
       }
       #local {
         display: none;
@@ -208,7 +207,6 @@
     let takePhotoBtn = document.getElementById("take-photo");
     let offBgBtn = document.getElementById("offBgBtn");
     let localImage = document.getElementById("local");
-    let unsupportSection = document.getElementById("unsupport-section");
     var constraints = {
       audio: false,
       video: {
@@ -224,17 +222,11 @@
     async function getMediaStream(constraints) {
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
-        if (mediaStream) {
-          unsupportSection.style.display = "none";
-          takePhotoBtn.style.display = "block";
-          video.srcObject = mediaStream;
-          video.onloadedmetadata = (event) => {
-            video.play();
-          };
-        } else {
-          unsupportSection.style.display = "flex";
-          takePhotoBtn.style.display = "none";
-        }
+
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = (event) => {
+          video.play();
+        };
       } catch (err) {
         console.error(err.message);
       }
@@ -359,15 +351,15 @@
       event.preventDefault();
     };
 
-    localImage.onchange = (event) => {
+    localImage.onchange =  (event) => {
       importLocalImage(event);
       event.preventDefault();
     };
 
     clearPhoto();
 
-    setTimeout(async () => {
-      await getMediaStream(constraints);
-    }, 1000);
+    // setTimeout(async () => {
+    //   await getMediaStream(constraints);
+    // }, 1000);
   </script>
 </html>
